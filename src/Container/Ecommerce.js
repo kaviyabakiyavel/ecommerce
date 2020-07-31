@@ -46,6 +46,7 @@ class Ecommerce extends Component {
         })
     }
     render() {
+        console.log("carddata",this.state.carddata)
         return (
             <div>
                 <Navbar

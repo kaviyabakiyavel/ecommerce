@@ -15,6 +15,10 @@ class ProductCard extends Component {
         };
     }
     componentDidMount() {
+        debugger
+        this.setState({
+            dataarray: this.props.carddata
+        })
         this.getdata(0)
         var options = {
             root: null,
@@ -28,6 +32,7 @@ class ProductCard extends Component {
         this.observer.observe(this.loadingRef)
     }
     handleObserver(entities, observer) {
+        debugger
         const y = entities[0].boundingClientRect.y;
         if (this.state.prevY > y) {
             const lastindex = this.state.dataarray.length;
@@ -47,6 +52,7 @@ class ProductCard extends Component {
         })
     }
     render() {
+        console.log("this.state.dataarray", this.state.dataarray)
         //Additional css
         const loadingCSS = {
             height: "100px",
@@ -62,19 +68,22 @@ class ProductCard extends Component {
                     {
                         map(this.state.dataarray, (data, index) => {
                             return < div class="col-md-4" style={{ paddingTop: "16px", paddingBottom: "16px" }} >
-                                <Card
-                                    id={data.id}
-                                    image={data.image}
-                                    product={data.product}
-                                    description={data.description}
-                                    price={data.price}
-                                    currency={data.currency}
-                                    full_description={data.full_description}
-                                    additional_image={data.additional_image}
-                                    brand={data.brand}
-                                    jew_size={data.jew_size}
-                                    avlble={data.avlble}
-                                />
+                                {/* {data.avlble !== 0 && */}
+                                    <Card
+                                        id={data.id}
+                                        image={data.image}
+                                        product={data.product}
+                                        description={data.description}
+                                        price={data.price}
+                                        currency={data.currency}
+                                        full_description={data.full_description}
+                                        additional_image={data.additional_image}
+                                        brand={data.brand}
+                                        jew_size={data.jew_size}
+                                        avlble={data.avlble}
+                                    />
+                                {/* } */}
+
                             </div>
                         })
                     }

@@ -15,8 +15,7 @@ class ProductCard extends Component {
         };
     }
     componentDidMount() {
-        debugger
-        this.getdata()
+        this.getdata(0)
         var options = {
             root: null,
             rootMargin: "0px",
@@ -29,30 +28,25 @@ class ProductCard extends Component {
         this.observer.observe(this.loadingRef)
     }
     handleObserver(entities, observer) {
-        debugger
         const y = entities[0].boundingClientRect.y;
         if (this.state.prevY > y) {
-            const lastindex = this.state.dataarray.length - 1;
-            // this.getdata(lastindex);
+            const lastindex = this.state.dataarray.length;
+            this.getdata(lastindex);
         }
         this.setState({
             prevY: y
         })
     }
     getdata = (id) => {
-        debugger
         let newdataarray = []
         let data = [...this.props.carddata]
-        console.log("data", data)
-        debugger
-        newdataarray = data.splice(0, 20)
+        newdataarray = data.slice(id, id + 20)
+        let renderarray = [...this.state.dataarray].concat(newdataarray)
         this.setState({
-            dataarray: newdataarray
+            dataarray: renderarray
         })
     }
     render() {
-        console.log("this.state.dataarray", this.state.dataarray)
-        console.log("this", this)
         //Additional css
         const loadingCSS = {
             height: "100px",
@@ -63,36 +57,10 @@ class ProductCard extends Component {
         const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
 
         return (
-            // <div class="container">
-            //     <div class={cx("row", "content")} style={{ paddingTop: "50px" }}>
-            //         {
-            //             map(this.props.carddata, (data, index) => {
-            //                 // console.log("data",data)
-            //                 return < div class="col-md-4" style={{ paddingTop: "16px", paddingBottom: "16px" }} >
-            //                     <Card
-            //                         id={data.id}
-            //                         image={data.image}
-            //                         product={data.product}
-            //                         description={data.description}
-            //                         price={data.price}
-            //                         currency={data.currency}
-            //                         full_description={data.full_description}
-            //                         additional_image={data.additional_image}
-            //                         brand={data.brand}
-            //                         jew_size={data.jew_size}
-            //                         avlble={data.avlble}
-            //                     />
-            //                 </div>
-            //             })
-            //         }
-            //     </div>
-            // </div >
-
             <div className="container">
                 <div style={{ minHeight: "800px" }} class={cx("row", "content")} style={{ paddingTop: "50px" }}>
                     {
                         map(this.state.dataarray, (data, index) => {
-                            console.log("data", data)
                             return < div class="col-md-4" style={{ paddingTop: "16px", paddingBottom: "16px" }} >
                                 <Card
                                     id={data.id}

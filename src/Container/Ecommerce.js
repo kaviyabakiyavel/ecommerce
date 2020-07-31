@@ -35,13 +35,12 @@ class Ecommerce extends Component {
         })
     }
     dynamicSearch = (searchedvalue) => {
-        let Masterdata = data
-        let searchedArray = Masterdata.filter(function (item) {
+        debugger
+        let searchedArray = this.state.carddata.filter(function (item) {
             if (!isEmpty(item["category"])) {
                 return item["category"].toLowerCase().includes(searchedvalue.toLowerCase())
             }
         })
-        console.log("searchedArray", searchedArray)
         this.setState({
             carddata: searchedArray
         })

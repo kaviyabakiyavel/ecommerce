@@ -14,12 +14,13 @@ class Ecommerce extends Component {
     }
     componentWillMount() {
         this.setState({
-            carddata: data
+            carddata: [...data]
         })
     }
     Applyfilter = (selectedPrice, selectedCategory) => {
-        debugger
-        let Masterdata = data
+        
+        let Masterdata = [...data]
+        console.log("Masterdata",Masterdata)
         // it will check each element 
         let pricearray = Masterdata.filter(function (item) {
             //it will filter from 0 to selectprice
@@ -35,8 +36,9 @@ class Ecommerce extends Component {
         })
     }
     dynamicSearch = (searchedvalue) => {
-        debugger
-        let searchedArray = this.state.carddata.filter(function (item) {
+        
+        let temp = [...this.state.carddata]
+        let searchedArray = temp.filter(function (item) {
             if (!isEmpty(item["category"])) {
                 return item["category"].toLowerCase().includes(searchedvalue.toLowerCase())
             }

@@ -1355,7 +1355,7 @@ class Ecommerce extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     super(props);
 
     this.Applyfilter = (selectedPrice, selectedCategory) => {
-      debugger;
+      ;
       let Masterdata = _Data_data_json__WEBPACK_IMPORTED_MODULE_4__; // it will check each element 
 
       let pricearray = Masterdata.filter(function (item) {
@@ -1373,7 +1373,7 @@ class Ecommerce extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     };
 
     this.dynamicSearch = searchedvalue => {
-      debugger;
+      ;
       let searchedArray = this.state.carddata.filter(function (item) {
         if (!Object(lodash__WEBPACK_IMPORTED_MODULE_5__["isEmpty"])(item["category"])) {
           return item["category"].toLowerCase().includes(searchedvalue.toLowerCase());

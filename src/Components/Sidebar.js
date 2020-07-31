@@ -15,19 +15,23 @@ class Sidebar extends Component {
         }
     }
     onclickcheckbox = (evt) => {
-        let checkboxvalue = this.state.selectedCategory
+        
+        let checkboxvalue = [...this.state.selectedCategory]
         //find index of the selected or unselected checkbox
         const index = checkboxvalue.indexOf(evt.currentTarget.id)
         //if index greater then -1 go inside the condition 
         if (index > -1) {
-            if (evt.currentTarget.checked == false) {
+            
+            // if (evt.currentTarget.checked == false) {
+            //     
                 checkboxvalue.splice(index, 1)
-            }
-            else {
-                checkboxvalue.push(evt.currentTarget.id)
-            }
+            // }
+           
         }
-
+        else {
+            
+            checkboxvalue.push(evt.currentTarget.id)
+        }
         this.setState({
             selectedCategory: checkboxvalue
         })
@@ -42,8 +46,6 @@ class Sidebar extends Component {
     }
 
     render() {
-        // console.log("this.state.listofcategory", this.state.listofcategory)
-        // console.log("selectedCategory", this.state.selectedCategory)
         return (
             <div class="sidebar" style={{ marginTop: "50px" }}>
                 <a className="sidebartitle">CATEGORIES</a>
